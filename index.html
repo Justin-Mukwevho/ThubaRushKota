@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thuba Rush Kota Joint | Pure Kasi Kotas</title>
+    <!-- GreatStack Signature Font: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        outfit: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        tomato: '#FF4C24',
+                        tomatoHover: '#E03B15',
+                        tomatoLight: '#FFF4F2',
+                        kasiDark: '#262626',
+                        kasiFooter: '#323232',
+                        kasiGold: '#F59E0B'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Outfit', sans-serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(6px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade { animation: fadeIn 0.4s ease-out forwards; }
+    </style>
+</head>
+<body class="bg-white text-slate-800 min-h-screen flex flex-col justify-between">
+
+    <!-- ================= VEE DIGITAL DEMO BAR ================= -->
+    <div class="bg-zinc-950 text-white border-b border-zinc-800 px-4 py-2 sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-2.5 text-xs">
+            <div class="flex items-center space-x-2">
+                <span class="bg-tomato text-white font-bold px-2 py-0.5 rounded uppercase tracking-wider text-[10px]">Live Pitch Demo</span>
+                <span class="text-zinc-300">Engineered by <strong class="text-white">Version Engineering Evolution Digital</strong> <span class="text-zinc-500">(Reg: DeepCore Industrial)</span></span>
+            </div>
+
+            <!-- 1-Click View Switcher -->
+            <div class="flex flex-wrap items-center justify-center gap-1.5">
+                <span class="text-zinc-400 font-medium mr-1 hidden sm:inline"><i class="fa-solid fa-sliders text-tomato mr-1"></i>Switch View:</span>
+                <button onclick="switchPage('home')" id="demo-btn-home" class="demo-pill bg-tomato text-white font-semibold px-3 py-1 rounded-full transition">
+                    1. Kota Menu
+                </button>
+                <button onclick="switchPage('builder')" id="demo-btn-builder" class="demo-pill bg-zinc-800 hover:bg-zinc-700 text-zinc-200 font-medium px-3 py-1 rounded-full transition">
+                    2. Build Your Own Kota
+                </button>
+                <button onclick="switchPage('cart')" id="demo-btn-cart" class="demo-pill bg-zinc-800 hover:bg-zinc-700 text-zinc-200 font-medium px-3 py-1 rounded-full transition">
+                    3. Cart & Checkout (<span id="demo-cart-count">2</span>)
+                </button>
+                <button onclick="switchPage('myorders')" id="demo-btn-myorders" class="demo-pill bg-zinc-800 hover:bg-zinc-700 text-zinc-200 font-medium px-3 py-1 rounded-full transition">
+                    4. Order Tracker
+                </button>
+                <button onclick="switchPage('admin')" id="demo-btn-admin" class="demo-pill bg-amber-500/20 border border-amber-500/40 text-amber-300 font-semibold px-3 py-1 rounded-full transition">
+                    <i class="fa-solid fa-store mr-1"></i>5. Staff Admin
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= GREATSTACK NAVBAR (80% CONTAINER) ================= -->
+    <header class="w-[90%] md:w-[82%] max-w-7xl mx-auto py-5 flex items-center justify-between border-b border-slate-100">
+        <div onclick="switchPage('home')" class="cursor-pointer flex items-center space-x-2">
+            <div class="w-10 h-10 rounded-xl bg-tomato flex items-center justify-center text-white font-extrabold text-xl shadow-sm">
+                TR
+            </div>
+            <div>
+                <span class="text-2xl md:text-3xl font-extrabold tracking-tight text-kasiDark">ThubaRush<span class="text-tomato">.</span></span>
+                <span class="block text-[10px] uppercase tracking-widest text-slate-400 font-semibold -mt-1">Pure Kasi Kotas</span>
+            </div>
+        </div>
+
+        <ul class="hidden lg:flex items-center space-x-7 text-[17px] text-[#49557e] font-medium">
+            <li onclick="switchPage('home')" class="cursor-pointer pb-1 text-kasiDark font-semibold border-b-2 border-kasiDark">kotas</li>
+            <li onclick="switchPage('builder')" class="cursor-pointer pb-1 hover:text-tomato transition flex items-center space-x-1">
+                <span>build-a-kota</span>
+                <span class="bg-tomato/10 text-tomato text-[10px] font-bold px-1.5 py-0.5 rounded-full">HOT</span>
+            </li>
+            <li onclick="switchPage('myorders')" class="cursor-pointer pb-1 hover:text-tomato transition">track-order</li>
+            <li onclick="document.getElementById('footer').scrollIntoView()" class="cursor-pointer pb-1 hover:text-tomato transition">branches</li>
+        </ul>
+
+        <div class="flex items-center space-x-4 sm:space-x-6">
+            <button onclick="openRewardsModal()" class="hidden sm:flex items-center space-x-1.5 bg-amber-50 border border-amber-200 text-amber-800 px-3 py-1.5 rounded-full text-xs font-bold transition">
+                <i class="fa-solid fa-fire text-tomato"></i>
+                <span id="nav-loyalty-points">140</span> Pts
+            </button>
+
+            <div onclick="switchPage('cart')" class="relative cursor-pointer p-1.5 hover:bg-slate-100 rounded-full transition">
+                <i class="fa-solid fa-basket-shopping text-2xl text-[#49557e]"></i>
+                <div id="basket-dot" class="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] bg-tomato text-white text-[10px] font-bold rounded-full flex items-center justify-center px-1 shadow">2</div>
+            </div>
+
+            <button onclick="toggleLoginModal(true)" id="signin-btn" class="bg-transparent hover:bg-tomatoLight text-[#49557e] border border-tomato px-5 py-2 rounded-full text-sm font-medium transition">
+                sign in
+            </button>
+        </div>
+    </header>
+
+    <!-- ================= MAIN VIEW CONTAINER ================= -->
+    <main class="flex-grow">
+
+        <!-- ================= VIEW 1: KOTA HOMEPAGE ================= -->
+        <div id="page-home" class="page-view w-[90%] md:w-[82%] max-w-7xl mx-auto">
+            <!-- Hero Header -->
+            <div class="relative rounded-[24px] my-6 overflow-hidden min-h-[360px] md:min-h-[420px] flex items-end bg-zinc-900 shadow-xl">
+                <!-- Using local kota.jpeg -->
+                <img src="kota.jpeg" alt="Thuba Rush Kota" class="absolute inset-0 w-full h-full object-cover opacity-55">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-transparent"></div>
+
+                <div class="relative z-10 p-6 sm:p-12 max-w-2xl text-white space-y-4 animate-fade">
+                    <div class="inline-flex items-center space-x-2 bg-tomato/90 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                        <i class="fa-solid fa-bolt"></i>
+                        <span>Pretoria CBD & Sunnyside • 100% Kota Specialists</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-5xl md:text-[54px] font-bold leading-[1.1] tracking-tight">
+                        Authentic Kasi Kotas, Loaded Fresh
+                    </h2>
+                    <p class="text-sm sm:text-base text-zinc-200 leading-relaxed">
+                        Quarter loaves packed with slap chips, Russians, patties, cheese, eggs, and our famous signature sauces. Zero commissions, direct to your hands.
+                    </p>
+                    <div class="pt-2 flex flex-wrap gap-3">
+                        <button onclick="document.getElementById('explore-menu').scrollIntoView()" class="bg-white text-[#747474] font-semibold px-7 py-3 rounded-full text-sm shadow-lg transition">
+                            Browse Kota Menu
+                        </button>
+                        <button onclick="switchPage('builder')" class="bg-tomato hover:bg-tomatoHover text-white font-semibold px-7 py-3 rounded-full text-sm shadow-lg transition flex items-center space-x-2">
+                            <i class="fa-solid fa-layer-group"></i>
+                            <span>Build Your Own Kota</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GreatStack Explore Menu (Kota Categories Only) -->
+            <section id="explore-menu" class="my-10 space-y-4">
+                <h1 class="text-2xl sm:text-3xl font-bold text-[#262626]">Explore Kota Categories</h1>
+                <p class="text-sm sm:text-base text-[#808080] max-w-2xl">
+                    Select a category below to filter our specialized Kota range.
+                </p>
+                <div id="category-list" class="flex items-center justify-between gap-6 overflow-x-auto no-scrollbar py-4 text-center"></div>
+                <hr class="h-[2px] bg-[#e2e2e2] border-none">
+            </section>
+
+            <!-- GreatStack Food Display (Kotas Only) -->
+            <section id="food-display" class="my-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 id="food-display-heading" class="text-2xl sm:text-[26px] font-bold text-[#262626]">Signature Kotas & Vetkoek</h2>
+                    <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full">
+                        <i class="fa-solid fa-circle-check mr-1"></i>Kitchens Active
+                    </span>
+                </div>
+                <div id="food-display-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7 gap-y-10"></div>
+            </section>
+        </div>
+
+        <!-- ================= VIEW 2: BUILD YOUR OWN KOTA ================= -->
+        <div id="page-builder" class="page-view hidden w-[90%] md:w-[82%] max-w-7xl mx-auto py-8 animate-fade">
+            <div class="flex justify-between items-center mb-8">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-tomato bg-tomatoLight px-3 py-1 rounded-full">Custom Kota Lab</span>
+                    <h1 class="text-3xl font-extrabold text-kasiDark mt-2">Build Your Own Thuba Rush Kota</h1>
+                </div>
+                <button onclick="switchPage('home')" class="text-sm font-semibold text-slate-600 hover:text-tomato flex items-center space-x-1">
+                    <i class="fa-solid fa-arrow-left"></i><span>Back to Menu</span>
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 space-y-6">
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                        <h3 class="font-bold text-lg text-kasiDark mb-3">1. Choose Your Bread Base</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3" id="builder-base-options"></div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                        <h3 class="font-bold text-lg text-kasiDark mb-1">2. Stack Your Fillings & Meats</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3" id="builder-filling-options"></div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                        <h3 class="font-bold text-lg text-kasiDark mb-1">3. Signature Sauces</h3>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" id="builder-sauce-options"></div>
+                    </div>
+                </div>
+
+                <div class="bg-zinc-900 text-white p-6 rounded-3xl shadow-xl flex flex-col justify-between h-fit sticky top-16">
+                    <div>
+                        <h3 class="text-xl font-bold mb-4">Your Custom Kota Stack</h3>
+                        <div id="kota-visual-stack" class="space-y-2 my-4 min-h-[180px] bg-zinc-950/70 p-4 rounded-2xl border border-zinc-800"></div>
+                        <input id="custom-kota-name" type="text" placeholder="Name your Kota (e.g. Boss Kota)" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-tomato mt-2">
+                    </div>
+                    <div class="border-t border-zinc-800 pt-4 mt-6">
+                        <div class="flex justify-between items-baseline mb-4">
+                            <span class="text-sm text-zinc-400">Total Price</span>
+                            <span id="custom-kota-price" class="text-3xl font-extrabold text-tomato">R 45.00</span>
+                        </div>
+                        <button onclick="addCustomKotaToCart()" class="w-full bg-tomato hover:bg-tomatoHover text-white font-bold py-3.5 rounded-xl shadow-lg transition">
+                            Add Custom Kota to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= VIEW 3: CART & CHECKOUT ================= -->
+        <div id="page-cart" class="page-view hidden w-[90%] md:w-[82%] max-w-7xl mx-auto py-10 animate-fade">
+            <h1 class="text-2xl sm:text-3xl font-bold text-kasiDark mb-6">Your Kota Basket</h1>
+            <div id="cart-items-container" class="divide-y divide-slate-200 my-2"></div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-12">
+                <div class="bg-slate-50 p-6 sm:p-8 rounded-2xl border border-slate-200 space-y-4">
+                    <h2 class="text-xl font-bold text-kasiDark">Fulfillment Mode</h2>
+                    <div class="grid grid-cols-2 gap-3">
+                        <button onclick="setFulfilmentMode('pickup')" id="mode-pickup-btn" class="p-3.5 rounded-xl border-2 border-tomato bg-tomatoLight text-kasiDark font-bold text-sm">Pickup (Free)</button>
+                        <button onclick="setFulfilmentMode('delivery')" id="mode-delivery-btn" class="p-3.5 rounded-xl border-2 border-slate-200 bg-white text-slate-600 font-bold text-sm">Delivery (R25)</button>
+                    </div>
+                    <input id="order-fname" type="text" value="Tshedimosetso" placeholder="Your Name" class="w-full px-3.5 py-2.5 rounded-lg border text-sm">
+                    <input id="order-phone" type="tel" value="082 555 0192" placeholder="Phone Number" class="w-full px-3.5 py-2.5 rounded-lg border text-sm">
+                    <select id="order-branch" class="w-full px-3.5 py-2.5 rounded-lg border text-sm bg-white">
+                        <option>Opera Plaza, 230 Pretorius St (Pretoria CBD)</option>
+                        <option>95 Robert Sobukwe St, Sunnyside</option>
+                    </select>
+                </div>
+
+                <div class="flex flex-col justify-between space-y-6">
+                    <div class="space-y-3">
+                        <h2 class="text-2xl font-bold text-kasiDark">Cart Totals</h2>
+                        <div class="flex justify-between text-sm py-2 border-b"><span>Subtotal</span><span id="summary-subtotal">R 0.00</span></div>
+                        <div class="flex justify-between text-sm py-2 border-b"><span>Delivery Fee</span><span id="summary-delivery">R 0.00</span></div>
+                        <div class="flex justify-between text-lg font-extrabold py-2"><span>Total</span><span id="summary-total" class="text-tomato">R 0.00</span></div>
+                        <div class="pt-4 grid grid-cols-2 gap-3">
+                            <button onclick="placeOrder('online')" class="bg-tomato text-white font-bold py-3 px-4 rounded-xl text-sm shadow">Pay & Track Online</button>
+                            <button onclick="placeOrder('whatsapp')" class="bg-emerald-600 text-white font-bold py-3 px-4 rounded-xl text-sm shadow">Order via WhatsApp</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= VIEW 4: MY ORDERS TRACKER ================= -->
+        <div id="page-myorders" class="page-view hidden w-[90%] md:w-[82%] max-w-7xl mx-auto py-10 animate-fade">
+            <h2 class="text-2xl sm:text-3xl font-bold text-kasiDark mb-6">Order Status Tracker</h2>
+            <div id="my-orders-list" class="space-y-5"></div>
+        </div>
+
+        <!-- ================= VIEW 5: STAFF ADMIN PANEL ================= -->
+        <div id="page-admin" class="page-view hidden min-h-[75vh] bg-[#fcfcfc] border-t border-slate-200 animate-fade">
+            <div class="px-6 py-4 bg-white border-b flex items-center justify-between">
+                <span class="font-bold text-kasiDark">Thuba Rush Staff Admin (Kotas Only)</span>
+            </div>
+            <div class="flex flex-col md:flex-row min-h-[70vh]">
+                <aside class="w-full md:w-60 bg-white border-r p-4 flex md:flex-col gap-3">
+                    <button onclick="switchAdminTab('orders')" id="admin-tab-orders" class="admin-sidebar-btn px-4 py-3 bg-tomatoLight text-tomato font-bold rounded-lg text-sm text-left">Orders (<span id="admin-order-badge">1</span>)</button>
+                    <button onclick="switchAdminTab('list')" id="admin-tab-list" class="admin-sidebar-btn px-4 py-3 text-slate-600 hover:bg-slate-50 font-medium rounded-lg text-sm text-left">Manage Kota Menu</button>
+                </aside>
+                <div class="flex-1 p-6">
+                    <div id="admin-view-orders" class="admin-subview space-y-4">
+                        <div id="admin-orders-container"></div>
+                    </div>
+                    <div id="admin-view-list" class="admin-subview hidden space-y-4">
+                        <div id="admin-list-container" class="bg-white border rounded-xl divide-y"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ================= MODALS & FOOTER ================= -->
+    <div id="login-modal" class="hidden fixed inset-0 bg-black/60 z-50 grid place-items-center p-4">
+        <form onsubmit="handleAuthSubmit(event)" class="bg-white w-full max-w-[360px] p-7 rounded-xl shadow-2xl space-y-4">
+            <h2 class="text-2xl font-bold text-kasiDark">Sign In / Register</h2>
+            <input type="text" placeholder="Name" required class="w-full px-3.5 py-2.5 border rounded-md">
+            <input type="email" placeholder="Phone or Email" required class="w-full px-3.5 py-2.5 border rounded-md">
+            <button type="submit" class="w-full bg-tomato text-white font-semibold py-2.5 rounded-md">Continue & Claim Pts</button>
+            <button type="button" onclick="toggleLoginModal(false)" class="w-full text-xs text-slate-400">Cancel</button>
+        </form>
+    </div>
+
+    <div id="rewards-modal" class="hidden fixed inset-0 bg-black/60 z-50 grid place-items-center p-4">
+        <div class="bg-white w-full max-w-md p-6 rounded-2xl shadow-2xl space-y-4">
+            <h3 class="text-xl font-bold text-kasiDark">Thuba Rush Loyalty Club</h3>
+            <p class="text-sm">You have <span id="modal-loyalty-pts" class="font-bold text-tomato">140</span> Rush Points.</p>
+            <button onclick="closeRewardsModal()" class="w-full bg-kasiDark text-white py-2.5 rounded-xl text-sm">Close</button>
+        </div>
+    </div>
+
+    <footer id="footer" class="bg-kasiFooter text-[#d9d9d9] pt-12 pb-6 mt-20">
+        <div class="w-[90%] md:w-[82%] max-w-7xl mx-auto text-center text-xs text-zinc-400 space-y-2">
+            <p>&copy; 2026 Thuba Rush Kota Joint (Pure Kota Specialists). All Rights Reserved.</p>
+            <p>Engineered by <strong class="text-tomato">Version Engineering Evolution Digital</strong> (Reg: DeepCore Industrial).</p>
+        </div>
+    </footer>
+
+    <!-- ================= JAVASCRIPT STATE & CONTROLLER ================= -->
+    <script>
+        // Only Kota Categories (Using local kota.jpeg)
+        const categories = [
+            { name: 'All', img: 'kota.jpeg' },
+            { name: 'Quarter Kotas', img: 'kota.jpeg' },
+            { name: 'Boss Kotas', img: 'kota.jpeg' },
+            { name: 'Magwinya Vetkoek', img: 'kota.jpeg' }
+        ];
+
+        let activeCategory = 'All';
+
+        // 100% Kotas Only (Using local kota.jpeg)
+        let foodList = [
+            { id: 'k-1', name: 'Thuba One Kota Meal', category: 'Quarter Kotas', price: 55, description: 'Fresh quarter loaf, golden chips, Russian mania, cheddar cheese, crisp lettuce & signature Thuba Rush sauces.', image: 'kota.jpeg' },
+            { id: 'k-2', name: 'Thuba Two Beef & Egg Kota', category: 'Quarter Kotas', price: 68, description: 'Single flame-grilled beef patty, cheddar cheese, fried egg, lettuce, cherry peppers & slap chips with signature sauces.', image: 'kota.jpeg' },
+            { id: 'k-3', name: 'Thuba Three Chicken & Russian Kota', category: 'Quarter Kotas', price: 85, description: 'Beef patty, Russian mania, stir-fried chicken strips, melted cheese, egg, lettuce, and chips.', image: 'kota.jpeg' },
+            { id: 'k-4', name: 'Thuba Four "Eiffel Tower" Kota', category: 'Boss Kotas', price: 98, description: 'Towering Kota with beef patty, full Russian, stir-fried chicken, double cheese, egg, avocado & signature sauces.', image: 'kota.jpeg' },
+            { id: 'k-5', name: 'Thuba Five "Priyankos" Boss Kota', category: 'Boss Kotas', price: 125, description: 'The ultimate Kasi giant: Rump steak, boerewors, beef patty, stir-fried chicken, Russian, mozzarella & cheddar cheese, egg.', image: 'kota.jpeg' },
+            { id: 'k-6', name: 'Monate Vetkoek (Stuffed Magwinya)', category: 'Magwinya Vetkoek', price: 52, description: 'Two large golden magwinya stuffed with fried egg, melted cheddar cheese, spicy chakalaka, and diced Russian sausage.', image: 'kota.jpeg' },
+            { id: 'k-7', name: 'Lekker Vetties Mince & Atchar', category: 'Magwinya Vetkoek', price: 58, description: 'Two warm vetkoek filled with savoury mince, tangy mango atchar, robot peppers, fried egg, and melted cheese.', image: 'kota.jpeg' }
+        ];
+
+        let cartItems = { 'k-1': 1, 'k-4': 1 };
+        let loyaltyPoints = 140;
+        let fulfilmentMode = 'pickup';
+
+        const builderBases = [
+            { id: 'b-1', name: 'Standard Quarter Loaf + Slap Chips', price: 28 },
+            { id: 'b-2', name: '2x Large Magwinya Vetkoek + Chips', price: 32 },
+            { id: 'b-3', name: 'Jumbo Half Loaf + Double Chips', price: 42 }
+        ];
+        const builderFillings = [
+            { id: 'f-atchar', name: 'Spicy Mango Atchar', price: 6, selected: true },
+            { id: 'f-cheese', name: 'Melted Cheddar Cheese', price: 10, selected: true },
+            { id: 'f-egg', name: 'Fried Egg', price: 9, selected: false },
+            { id: 'f-russian', name: 'Russian Mania Sausage', price: 18, selected: true },
+            { id: 'f-patty', name: 'Flame-Grilled Beef Patty', price: 22, selected: false },
+            { id: 'f-chicken', name: 'Chicken Strips', price: 24, selected: false },
+            { id: 'f-wors', name: 'Boerewors', price: 25, selected: false },
+            { id: 'f-steak', name: 'Rump Steak Strips', price: 32, selected: false }
+        ];
+        const builderSauces = [
+            { id: 's-rush', name: 'Signature Thuba Rush Sauce', selected: true },
+            { id: 's-chilli', name: 'Kasi Hot Chilli', selected: true }
+        ];
+        let selectedBaseId = 'b-1';
+
+        let ordersList = [
+            {
+                id: 'TR-8042',
+                customer: 'Tshedimosetso Bogacwi',
+                phone: '082 555 0192',
+                mode: 'Pickup (230 Pretorius St, Pretoria CBD)',
+                itemsText: 'Thuba One Kota Meal x 1, Thuba Four "Eiffel Tower" Kota x 1',
+                itemCount: 2,
+                amount: 153,
+                status: 'Driver on the Way / Ready for Collection',
+                time: '10 mins ago'
+            }
+        ];
+
+        function renderExploreMenu() {
+            document.getElementById('category-list').innerHTML = categories.map(cat => `
+                <div onclick="selectCategory('${cat.name}')" class="flex flex-col items-center shrink-0 cursor-pointer group">
+                    <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden transition ${activeCategory === cat.name ? 'ring-4 ring-tomato p-1 bg-white shadow-md' : 'opacity-90'}">
+                        <img src="${cat.img}" class="w-full h-full object-cover rounded-full">
+                    </div>
+                    <p class="mt-2.5 text-xs sm:text-sm font-semibold ${activeCategory === cat.name ? 'text-tomato font-bold' : 'text-[#747474]'}">${cat.name}</p>
+                </div>
+            `).join('');
+        }
+
+        function selectCategory(name) {
+            activeCategory = (activeCategory === name && name !== 'All') ? 'All' : name;
+            document.getElementById('food-display-heading').textContent = activeCategory === 'All' ? 'Signature Kotas & Vetkoek' : `${activeCategory} Range`;
+            renderExploreMenu();
+            renderFoodDisplay();
+        }
+
+        function renderFoodDisplay() {
+            const grid = document.getElementById('food-display-list');
+            const filtered = activeCategory === 'All' ? foodList : foodList.filter(f => f.category === activeCategory);
+
+            grid.innerHTML = filtered.map(item => {
+                const qty = cartItems[item.id] || 0;
+                return `
+                    <div class="bg-white rounded-[15px] shadow-[0_0_12px_rgba(0,0,0,0.08)] overflow-hidden flex flex-col justify-between transition hover:shadow-xl animate-fade">
+                        <div>
+                            <div class="relative h-48 w-full bg-slate-100">
+                                <img src="${item.image}" class="w-full h-full object-cover">
+                                <span class="absolute top-3 left-3 bg-black/70 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">${item.category}</span>
+                                ${qty === 0 ? `
+                                    <button onclick="updateCart('${item.id}', 1)" class="absolute bottom-3.5 right-3.5 w-9 h-9 rounded-full bg-white text-kasiDark hover:bg-tomato hover:text-white shadow flex items-center justify-center font-bold">
+                                        <i class="fa-solid fa-plus text-xs"></i>
+                                    </button>
+                                ` : `
+                                    <div class="absolute bottom-3.5 right-3.5 bg-white rounded-full p-1.5 px-2.5 shadow flex items-center space-x-3 border">
+                                        <button onclick="updateCart('${item.id}', -1)" class="w-6 h-6 rounded-full bg-red-100 text-red-600 flex items-center justify-center">-</button>
+                                        <span class="font-bold text-sm">${qty}</span>
+                                        <button onclick="updateCart('${item.id}', 1)" class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center">+</button>
+                                    </div>
+                                `}
+                            </div>
+                            <div class="p-5">
+                                <h3 class="font-bold text-[18px] text-kasiDark mb-1">${item.name}</h3>
+                                <p class="text-xs text-[#676767] line-clamp-3">${item.description}</p>
+                            </div>
+                        </div>
+                        <div class="px-5 pb-5 flex items-center justify-between">
+                            <span class="text-[21px] font-bold text-tomato">R ${item.price}.00</span>
+                            <button onclick="updateCart('${item.id}', 1)" class="text-xs font-bold text-slate-500 hover:text-tomato">+ Add</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function updateCart(id, delta) {
+            const current = cartItems[id] || 0;
+            const next = Math.max(0, current + delta);
+            if (next === 0) delete cartItems[id];
+            else cartItems[id] = next;
+
+            updateBadges();
+            renderFoodDisplay();
+            renderCartPage();
+        }
+
+        function updateBadges() {
+            const count = Object.values(cartItems).reduce((a, b) => a + b, 0);
+            document.getElementById('basket-dot').textContent = count;
+            document.getElementById('basket-dot').style.display = count > 0 ? 'flex' : 'none';
+            document.getElementById('demo-cart-count').textContent = count;
+        }
+
+        function renderKotaBuilder() {
+            document.getElementById('builder-base-options').innerHTML = builderBases.map(b => `
+                <div onclick="selectedBaseId='${b.id}'; renderKotaBuilder();" class="p-3.5 rounded-xl border-2 cursor-pointer transition ${selectedBaseId === b.id ? 'border-tomato bg-tomatoLight' : 'border-slate-200'}">
+                    <div class="font-bold text-sm text-kasiDark">${b.name}</div>
+                    <span class="text-xs font-extrabold text-tomato mt-1 block">R ${b.price}.00</span>
+                </div>
+            `).join('');
+
+            document.getElementById('builder-filling-options').innerHTML = builderFillings.map((f, idx) => `
+                <div onclick="builderFillings[${idx}].selected = !builderFillings[${idx}].selected; renderKotaBuilder();" class="p-3 rounded-xl border-2 cursor-pointer flex justify-between items-center ${f.selected ? 'border-tomato bg-tomatoLight/60' : 'border-slate-200'}">
+                    <div>
+                        <div class="font-bold text-sm text-kasiDark">${f.name}</div>
+                        <div class="text-xs text-tomato font-semibold">+ R ${f.price}.00</div>
+                    </div>
+                    <div class="w-6 h-6 rounded-full flex items-center justify-center ${f.selected ? 'bg-tomato text-white' : 'bg-slate-100 text-slate-400'}"><i class="fa-solid fa-check text-xs"></i></div>
+                </div>
+            `).join('');
+
+            document.getElementById('builder-sauce-options').innerHTML = builderSauces.map((s, idx) => `
+                <div onclick="builderSauces[${idx}].selected = !builderSauces[${idx}].selected; renderKotaBuilder();" class="p-3 rounded-xl border-2 cursor-pointer text-center ${s.selected ? 'border-amber-500 bg-amber-50 font-bold' : 'border-slate-200 text-slate-600'} text-xs">
+                    ${s.name}
+                </div>
+            `).join('');
+
+            const baseObj = builderBases.find(b => b.id === selectedBaseId);
+            const activeFillings = builderFillings.filter(f => f.selected);
+            const totalPrice = baseObj.price + activeFillings.reduce((s, f) => s + f.price, 0);
+
+            document.getElementById('custom-kota-price').textContent = `R ${totalPrice}.00`;
+            document.getElementById('kota-visual-stack').innerHTML = `
+                <div class="text-xs bg-tomato/20 border border-tomato/40 text-white px-3 py-2 rounded-lg font-bold flex justify-between">
+                    <span>${baseObj.name}</span><span>R${baseObj.price}</span>
+                </div>
+                ${activeFillings.map(f => `<div class="text-xs bg-zinc-800 px-3 py-1.5 rounded-lg flex justify-between"><span>${f.name}</span><span class="text-zinc-400">R${f.price}</span></div>`).join('')}
+            `;
+        }
+
+        function addCustomKotaToCart() {
+            const baseObj = builderBases.find(b => b.id === selectedBaseId);
+            const activeFillings = builderFillings.filter(f => f.selected);
+            const totalPrice = baseObj.price + activeFillings.reduce((s, f) => s + f.price, 0);
+            const tagName = document.getElementById('custom-kota-name').value.trim() || 'Custom Built Kota';
+
+            const newId = 'custom-' + Date.now();
+            foodList.unshift({
+                id: newId, name: tagName, category: 'Boss Kotas', price: totalPrice,
+                description: `${baseObj.name} + ${activeFillings.map(f => f.name).join(', ')}.`,
+                image: 'kota.jpeg'
+            });
+
+            cartItems[newId] = 1;
+            updateBadges();
+            renderFoodDisplay();
+            switchPage('cart');
+        }
+
+        function setFulfilmentMode(mode) {
+            fulfilmentMode = mode;
+            document.getElementById('mode-pickup-btn').className = mode === 'pickup' ? 'p-3.5 rounded-xl border-2 border-tomato bg-tomatoLight text-kasiDark font-bold text-sm' : 'p-3.5 rounded-xl border-2 border-slate-200 bg-white text-slate-600 font-bold text-sm';
+            document.getElementById('mode-delivery-btn').className = mode === 'delivery' ? 'p-3.5 rounded-xl border-2 border-tomato bg-tomatoLight text-kasiDark font-bold text-sm' : 'p-3.5 rounded-xl border-2 border-slate-200 bg-white text-slate-600 font-bold text-sm';
+            renderCartPage();
+        }
+
+        function renderCartPage() {
+            const container = document.getElementById('cart-items-container');
+            const entries = Object.keys(cartItems).filter(id => cartItems[id] > 0);
+
+            if (entries.length === 0) {
+                container.innerHTML = `<div class="py-12 text-center text-slate-400">Your basket is empty.</div>`;
+            } else {
+                container.innerHTML = entries.map(id => {
+                    const item = foodList.find(f => f.id === id);
+                    return `
+                        <div class="grid grid-cols-1 sm:grid-cols-6 items-center gap-4 py-4 text-sm">
+                            <img src="${item.image}" class="w-16 h-16 rounded-xl object-cover">
+                            <div class="sm:col-span-2"><p class="font-bold text-kasiDark">${item.name}</p></div>
+                            <p class="font-semibold text-slate-600">R ${item.price}.00</p>
+                            <span class="font-bold">x${cartItems[id]}</span>
+                            <div class="text-right font-bold text-kasiDark">R ${item.price * cartItems[id]}.00</div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            const subtotal = Object.keys(cartItems).reduce((sum, id) => sum + (foodList.find(f => f.id === id)?.price || 0) * cartItems[id], 0);
+            const delivery = fulfilmentMode === 'delivery' ? 25 : 0;
+            document.getElementById('summary-subtotal').textContent = `R ${subtotal}.00`;
+            document.getElementById('summary-delivery').textContent = `R ${delivery}.00`;
+            document.getElementById('summary-total').textContent = `R ${subtotal + delivery}.00`;
+        }
+
+        function placeOrder(channel) {
+            const subtotal = Object.keys(cartItems).reduce((sum, id) => sum + (foodList.find(f => f.id === id)?.price || 0) * cartItems[id], 0);
+            if (subtotal === 0) { alert('Basket is empty!'); return; }
+
+            const name = document.getElementById('order-fname').value;
+            const phone = document.getElementById('order-phone').value;
+            const branch = document.getElementById('order-branch').value;
+            const orderId = 'TR-' + Math.floor(8045 + Math.random() * 900);
+            const itemsSummary = Object.keys(cartItems).map(id => `${foodList.find(f => f.id === id).name} x ${cartItems[id]}`).join(', ');
+
+            ordersList.unshift({
+                id: orderId, customer: name, phone, mode: `Pickup (${branch})`,
+                itemsText: itemsSummary, itemCount: Object.values(cartItems).reduce((a,b)=>a+b,0),
+                amount: subtotal, status: 'On the Grill (Processing)', time: 'Just now'
+            });
+
+            cartItems = {};
+            updateBadges();
+            renderMyOrders();
+            renderAdminOrders();
+
+            if (channel === 'whatsapp') {
+                const text = encodeURIComponent(`*THUBA RUSH KOTA ORDER (${orderId})*\nName: ${name}\nItems: ${itemsSummary}\nTotal: R${subtotal}`);
+                window.open(`https://wa.me/27791183422?text=${text}`, '_blank');
+            } else {
+                alert(`Order ${orderId} successfully placed!`);
+            }
+            switchPage('myorders');
+        }
+
+        function renderMyOrders() {
+            document.getElementById('my-orders-list').innerHTML = ordersList.map(o => `
+                <div class="bg-white border border-tomato/40 rounded-2xl p-6 shadow-sm space-y-3">
+                    <div class="flex justify-between items-center"><span class="font-bold text-tomato">#${o.id}</span><span class="text-xs font-bold text-kasiDark">${o.status}</span></div>
+                    <p class="font-bold text-kasiDark text-sm">${o.itemsText}</p>
+                    <div class="pt-2 border-t text-xs text-slate-500">Mode: ${o.mode} | Total: R${o.amount}</div>
+                </div>
+            `).join('');
+        }
+
+        function renderAdminOrders() {
+            document.getElementById('admin-order-badge').textContent = ordersList.length;
+            document.getElementById('admin-orders-container').innerHTML = ordersList.map((o, idx) => `
+                <div class="bg-white border rounded-xl p-4 flex justify-between items-center">
+                    <div>
+                        <span class="font-bold text-tomato">#${o.id}</span>
+                        <p class="font-bold text-sm text-kasiDark mt-1">${o.itemsText}</p>
+                        <p class="text-xs text-slate-500">${o.customer} • R${o.amount}</p>
+                    </div>
+                    <select onchange="ordersList[${idx}].status = this.value; renderMyOrders();" class="border p-2 rounded text-xs font-bold bg-amber-50">
+                        <option ${o.status.includes('Processing') ? 'selected' : ''}>On the Grill (Processing)</option>
+                        <option ${o.status.includes('Way') ? 'selected' : ''}>Driver on the Way / Ready for Collection</option>
+                        <option ${o.status.includes('Delivered') ? 'selected' : ''}>Collected / Delivered</option>
+                    </select>
+                </div>
+            `).join('');
+        }
+
+        function renderAdminFoodList() {
+            document.getElementById('admin-list-container').innerHTML = foodList.map(f => `
+                <div class="p-3 flex justify-between items-center text-sm">
+                    <div class="flex items-center space-x-3"><img src="${f.image}" class="w-10 h-10 rounded object-cover"><div><span class="font-bold">${f.name}</span><div class="text-xs text-slate-400">R${f.price} • ${f.category}</div></div></div>
+                    <button onclick="foodList = foodList.filter(x => x.id !== '${f.id}'); renderAdminFoodList(); renderFoodDisplay();" class="text-red-500 font-bold">&times;</button>
+                </div>
+            `).join('');
+        }
+
+        function switchPage(id) {
+            document.querySelectorAll('.page-view').forEach(el => el.classList.add('hidden'));
+            document.getElementById('page-' + id).classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function switchAdminTab(tab) {
+            document.querySelectorAll('.admin-subview').forEach(el => el.classList.add('hidden'));
+            document.getElementById('admin-view-' + tab).classList.remove('hidden');
+        }
+
+        function toggleLoginModal(show) { document.getElementById('login-modal').classList.toggle('hidden', !show); }
+        function openRewardsModal() { document.getElementById('rewards-modal').classList.remove('hidden'); }
+        function closeRewardsModal() { document.getElementById('rewards-modal').classList.add('hidden'); }
+        function handleAuthSubmit(e) { e.preventDefault(); toggleLoginModal(false); alert('Signed in successfully!'); }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            renderExploreMenu();
+            renderFoodDisplay();
+            renderKotaBuilder();
+            renderCartPage();
+            renderMyOrders();
+            renderAdminOrders();
+            renderAdminFoodList();
+            updateBadges();
+        });
+    </script>
+</body>
+</html>
